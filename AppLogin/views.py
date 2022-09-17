@@ -3,22 +3,29 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context, Template
 
+
 from .models import Login
 
 
-def login(request):
-    homehtml1=open("C:/Users/Nestor/Documents/Coder - Desarrollo Web/Python/Proyecto entrega/TrabajoEnCasa/WorkHome/template/login.html")
-    plantilla1=Template(homehtml1.read())
-    homehtml1.close()
-    contexto1=Context()
-    documento1=plantilla1.render(contexto1)
-    return HttpResponse(documento1)
-
 def home(request):
-    homehtml=open("C:/Users/Nestor/Documents/Coder - Desarrollo Web/Python/Proyecto entrega/TrabajoEnCasa/WorkHome/template/home.html")
-    plantilla=Template(homehtml.read())
-    homehtml.close()
-    contexto=Context()
-    documento=plantilla.render(contexto)
-    return HttpResponse(documento)
-  
+  return render(request, "AppLogin/home.html")
+
+
+
+def login(request):
+   if request.method=="POST":
+      miFormulario=Login(request.POST)
+      if miFormulario.is_valid():
+         info=miFormulario.cleaned_data
+         useremail=info.get("useremail")
+         password=info.get("password")
+         login=Login(useremail=useremail,password=password)
+         login.save()
+         return render(request, "AppLogin/login.html", {"mensaje": "Has iniciado Sesion"})
+      else:
+         return render(request, "AppLogin/login.html", {"mensaje": "Error"})
+   else:
+      miFormulario=Login()
+      return render(request, "AppLogin/login.html", {"formulario":miFormulario})
+
+
