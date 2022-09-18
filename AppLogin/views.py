@@ -1,10 +1,11 @@
-from django.http import HttpResponse
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context, Template
 
 
-from .models import Login
+from .models import ModelLogin
+from AppLogin.forms import Formslogin
 
 
 def home(request):
@@ -12,20 +13,20 @@ def home(request):
 
 
 
-def login(request):
+def viewLoin(request):
    if request.method=="POST":
-      miFormulario=Login(request.POST)
+      miFormulario=Formslogin(request.POST)
       if miFormulario.is_valid():
          info=miFormulario.cleaned_data
          useremail=info.get("useremail")
          password=info.get("password")
-         login=Login(useremail=useremail,password=password)
+         login=ModelLogin(useremail=useremail,password=password)
          login.save()
          return render(request, "AppLogin/login.html", {"mensaje": "Has iniciado Sesion"})
       else:
          return render(request, "AppLogin/login.html", {"mensaje": "Error"})
    else:
-      miFormulario=Login()
+      miFormulario=Formslogin()
       return render(request, "AppLogin/login.html", {"formulario":miFormulario})
 
 

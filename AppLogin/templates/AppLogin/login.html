@@ -27,26 +27,19 @@
                 </div>
             </div>
         </nav>
-        <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
-            <table>
-                {{ formulario.as_table }}
-            </table>
-            <input type="submit", value="Enviar">
-
-          
-        </form>
-        <!-- Page content-->
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- Post content-->
-                    <article>
-                        <!-- Post header-->
-                        <header class="mb-4">
-                            <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">Bienvenido, aqui podras registrarte!!!</h1>
-                            <!-- Post meta content-->
        
+        <!-- Page content-->
+     
+        <h1 class="fw-bolder mb-1">Bienvenido, aqui podras registrarte!!!</h1>
+                            <!-- Post meta content-->
+                            <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+                                <table>
+                                    {{ formulario.as_table }}
+                                </table>
+                                <input type="submit", value="Enviar">
+                    
+                              
+                            </form>
         
                         
                             
