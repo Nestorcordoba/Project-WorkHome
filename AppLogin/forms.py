@@ -1,5 +1,5 @@
 from django import forms
 
-class Formslogin(forms.Form):
-    useremail=forms.EmailField()
-    password=forms.CharField(max_length=50)
+#class Formslogin(forms.Form):
+ #   email=forms.EmailField()
+ #   passw=forms.CharField(max_length=50)

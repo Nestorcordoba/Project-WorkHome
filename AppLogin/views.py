@@ -3,30 +3,31 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context, Template
 
-
-from .models import ModelLogin
-from AppLogin.forms import Formslogin
-
+#imports para login
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 def home(request):
   return render(request, "AppLogin/home.html")
 
 
-
-def viewLoin(request):
+def login_request(request):
    if request.method=="POST":
-      miFormulario=Formslogin(request.POST)
-      if miFormulario.is_valid():
-         info=miFormulario.cleaned_data
-         useremail=info.get("useremail")
-         password=info.get("password")
-         login=ModelLogin(useremail=useremail,password=password)
-         login.save()
-         return render(request, "AppLogin/login.html", {"mensaje": "Has iniciado Sesion"})
+      form=AuthenticationForm(request, data=request.POST)
+      if form.is_valid():
+         #info=miFormulario.cleaned_data
+         usu=request.POST["username"]
+         clave=request.POST["password"]
+         usuario=authenticate(username=usu,password=clave)
+         if usuario is not None:
+             login(request,usuario)
+             return render(request, 'AppLogin/login.html', {'mensaje':f"Bienvenido {usuario}"})
+         else:
+             return render(request, 'AppLogin/login.html', {"formulario":form, 'mensaje': 'Usuario o contraseña incorrectos'})
       else:
-         return render(request, "AppLogin/login.html", {"mensaje": "Error"})
+         return render(request, "AppLogin/login.html", {"formulario":form, 'mensaje': 'Formulario invalido'})
    else:
-      miFormulario=Formslogin()
-      return render(request, "AppLogin/login.html", {"formulario":miFormulario})
+      form=AuthenticationForm()
+      return render(request, "AppLogin/login.html", {"formulario":form})
 
 
