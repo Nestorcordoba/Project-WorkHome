@@ -31,10 +31,10 @@
         <h1 class="fw-bolder mb-1">FORMULARIO DE REGISTRO</h1>
         <h1 >{{mensaje}}</h1>
                             <!-- Post meta content-->
-        <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
-            <table>
+        <form action="{% url 'registro' %}" method="POST"> {% csrf_token %}
+            
                 {{ formulario.as_p }}
-            </table>
+            
             <button type="submit">Registrate</button> 
         </form>                
         <!-- Footer-->
