@@ -31,6 +31,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registro</a></li>
                         {% else %}
                         <p>hola! {{user.username}}</p>
+                        <img src="{{ imagen }}" alt="">
                         <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">logout</a></li>
                         {% endif %}
                     </ul>

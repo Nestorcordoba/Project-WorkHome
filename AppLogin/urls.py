@@ -10,4 +10,5 @@ urlpatterns =[
     path('', home),
     path('logout/', LogoutView.as_view(template_name='AppLogin/logout.html'), name='logout'),
     path('edicionPerfil/', edicionPerfil, name='edicionPerfil'),
+    path('agregarAvatar/', agregarAvatar, name='agregarAvatar'),
 ]

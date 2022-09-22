@@ -12,7 +12,7 @@ from AppLogin.forms import UserRegisterForm,UserEditForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
-   return render(request, "AppLogin/home.html")
+   return render(request, "AppLogin/home.html", {"imagen":obtenerAvatar(request)})
 
 
 def login_request(request):
