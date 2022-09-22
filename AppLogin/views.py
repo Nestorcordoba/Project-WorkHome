@@ -8,7 +8,7 @@ from .forms import *
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
-from AppLogin.forms import UserRegisterForm,UserEditForm
+from AppLogin.forms import UserRegisterForm,UserEditForm, AvatarForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
