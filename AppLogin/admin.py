@@ -4,3 +4,4 @@ from .models import *
 #admin.site.register(ModelLogin)
 
 # Register your models here.
+admin.site.register(Avatar)
