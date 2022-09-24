@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import Context, Template
 from .models import *
 from .forms import *
+from django.urls import reverse_lazy
 
 #imports para login
 from django.contrib.auth import login,logout,authenticate
@@ -71,10 +72,10 @@ def agregarAvatar(request):
                 avatarViejo.delete()
             avatar=Avatar(user=request.user, imagen=formulario.cleaned_data['imagen'])
             avatar.save()
-            return render(request, 'AppCoder/inicio.html', {'usuario':request.user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE', "imagen":obtenerAvatar(request)})
+            return render(request, 'AppLogin/home.html', {'usuario':request.user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE', "imagen":obtenerAvatar(request)})
     else:
         formulario=AvatarForm()
-    return render(request, 'AppCoder/agregarAvatar.html', {'form':formulario, 'usuario':request.user, "imagen":obtenerAvatar(request)})
+    return render(request, 'AppLogin/agregarAvatar.html', {'form':formulario, 'usuario':request.user, "imagen":obtenerAvatar(request)})
 
 
 def obtenerAvatar(request):
