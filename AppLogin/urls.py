@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 
-from .views import *
+from AppLogin.views import *
+from Blogs.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns =[
@@ -11,4 +12,5 @@ urlpatterns =[
     path('logout/', LogoutView.as_view(template_name='AppLogin/logout.html'), name='logout'),
     path('edicionPerfil/', edicionPerfil, name='edicionPerfil'),
     path('agregarAvatar/', agregarAvatar, name='agregarAvatar'),
+    path('crearPost/', crear_post, name= 'crearPost'),
 ]
