@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'AppLogin'
+    'AppLogin',
+    'ckeditor',
+    'Blogs',
+    'crispy_forms',
     
 ]
 
@@ -128,3 +131,11 @@ LOGIN_URL='/AppCoder/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+
+CRISPY_TEMPLATE_PACK= 'bootstrap4'
