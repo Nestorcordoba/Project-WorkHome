@@ -23,13 +23,14 @@
                         <li class="nav-item"><a class="btn btn-primary" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="btn btn-secondary" href="{% url 'registro' %}">Registrate</a></li>
                        
+                       
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Page content-->
-        <h1 class="fw-bolder mb-1">FORMULARIO DE INGRESO</h1>
-        <h1 >{{mensaje}}</h1>
+        <h3 class="fw-bolder mb-1">FORMULARIO DE INGRESO</h3>
+        <h2 >{{mensaje}}</h2>
                             <!-- Post meta content-->
         {% load crispy_forms_tags %}
         <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
