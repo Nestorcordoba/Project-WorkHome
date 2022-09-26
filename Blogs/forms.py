@@ -1,6 +1,7 @@
 from dataclasses import fields
 from django import forms
 from .models import *
+from .models import Post
 from ckeditor.fields import RichTextField
 
 class FormularioPost(forms.ModelForm):
