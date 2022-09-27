@@ -46,7 +46,7 @@ def register_request(request):
       form=UserRegisterForm()
    return render(request, 'AppLogin/registro.html', {"formulario":form})
    
-@login_required
+@login_required(login_url='/AppLogin/login/')
 def edicionPerfil(request):
     usuario=request.user
     if request.method=="POST":
@@ -63,7 +63,7 @@ def edicionPerfil(request):
         form= UserEditForm(instance=usuario)
     return render(request, 'AppLogin/edicionPerfil.html', {'form':form, 'usuario':usuario})
 
-@login_required
+@login_required(login_url='/AppLogin/login/')
 def agregarAvatar(request):
     if request.method == 'POST':
         formulario=AvatarForm(request.POST, request.FILES)
@@ -78,7 +78,7 @@ def agregarAvatar(request):
         formulario=AvatarForm()
     return render(request, 'AppLogin/agregarAvatar.html', {'form':formulario, 'usuario':request.user, "imagen":obtenerAvatar(request)})
 
-@login_required
+@login_required(login_url='/AppLogin/login/')
 def obtenerAvatar(request):
     lista=Avatar.objects.filter(user=request.user)
     if len(lista)!=0:
