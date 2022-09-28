@@ -35,11 +35,11 @@
         
       
         
-          <form action="{% url 'crear_post' %}" class="mt-3" autocomplete="off" method="post" enctype="multipart/form-data"> 
+          <form action="{% url 'crear_post' %}" class="mt-3" autocomplete="off" method="POST" enctype="multipart/form-data"> 
             {% csrf_token %}
         
            
-            {% crispy form %}
+            {{ form|crispy }}
 
            
             <button type="submit" class="btn btn-success">Postear</button>
