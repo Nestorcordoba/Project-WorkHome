@@ -35,7 +35,6 @@
         
       
         {% if posts %}
-<<<<<<< HEAD
             {% for post in posts %}
                 {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-4">
@@ -55,24 +54,6 @@
                                 </a>
                             {% endif %}
                         </div>
-=======
-        {% for post in posts %}
-            {% if forloop.first %}<div class="row">{% endif %}
-            <div class="col-4">
-                <div class="card">
-                    <img class="card-img-top" src="" alt="{{ post.image.url }}">
-                    <div class="card-body">
-                        <h5 class="card-title"> {{ post.titulo }}</h5>
-                        <h5 class="card-title"> {{ post.contenido }}</h5>
-                        <h6 class="card-subtitle"> Autor: {{ post.autor.username }}</h6>
-                    </div>
-                    <div class="card-footer">
-                        {% if user == post.autor %}
-                            <a href="{% url 'eliminar_post' post.id %}" class="btn btn-danger">
-                                Eliminar post 
-                            </a>
-                        {% endif %}
->>>>>>> f080205f4fd9ce3798d4ede35041aae94da1fb29
                     </div>
                 </div>
             </div>
@@ -82,15 +63,6 @@
 
         {% include "Blogs/paginacion.html" %}
 
-<<<<<<< HEAD
-        {% else %}
-            <div > 
-                aqui no hay nada
-            </div>
-        {% endif %}
-    </div>
-{% endblock %}
-=======
     {% else %}
         <div class="alert alert-danger"> aquí no hay nada</div>
     {% endif %}
@@ -106,4 +78,3 @@
         <script src="js/scripts.js"></script>
     </body>
 </html>
->>>>>>> f080205f4fd9ce3798d4ede35041aae94da1fb29
