@@ -8,7 +8,6 @@ from django.core.paginator import Paginator
 from django.views.generic import UpdateView
 # Create your views here.
 
-@login_required(login_url='/AppLogin/login/')
 def posteos(request):
     listado_posts = Post.objects.all()
     paginator = Paginator(listado_posts, 3)
@@ -39,22 +38,6 @@ def crear_post(request):
     form= FormularioPost()       
     return render(request, 'Blogs/crear_post.html', {'form':form})
 
-
-'''@login_required(login_url='/AppLogin/login/')
-def eliminar_post(request, post_id):
-    try:
-        post = Post.objects.get(pk = post_id)
-    except Post.DoesNotExist:
-        messages.error(request, "el post que quieres eliminar no existe")
-        return redirect("posteos")
-
-    if post.autor != request.user:
-        messages.error(request, "no eres el autor de este post")
-        return redirect("posteos")
-
-    post.delete()
-    messages.error(request, f"el post {post.titulo} ha sido eliminado")
-    return redirect("posteos")'''
 @login_required(login_url='/AppLogin/login/')
 def eliminar_post(request, post_id):
     post=Post.objects.get(id=post_id)
@@ -64,22 +47,15 @@ def eliminar_post(request, post_id):
 
 @login_required(login_url='/AppLogin/login/')
 def editar_post(request, id):
-    #traer el post
     post=Post.objects.get(id=id)
     if request.method=="POST":
-        #el form viene lleno, con los datos a cambiar
         form=FormularioPost(request.POST)
         if form.is_valid():
-            #cambio los datos
             info=form.cleaned_data
             post.titulo=info["titulo"]
             post.subtitulo=info["subtitulo"]
             post.contenido=info["contenido"]
-            #guardo el post
             post.save()
-            #vuelvo a la vista del listado para ver el cambio
-           #posteos=Post.objects.all()
-           # return render(request, "Blogs/posteos.html", {"posteos":posteos})
             return redirect('posteos')
     else:
         form= FormularioPost(initial={"titulo": post.titulo, "subtitulo": post.subtitulo, "contenido": post.contenido})

@@ -24,15 +24,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         {% if not request.user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Sign In</a></li>
+                        <li class="nav-item"><a class="btn btn-success" aria-current="page" href="{% url 'login' %}">Iniciar sesion</a></li>
                         <li class="nav-item"><a class="btn btn-primary" href="{% url 'registro' %}">Registrate</a></li>
                         
                         {% else %}
                         <p>hola! {{user.username}}</p>
                         <img src="{{ imagen }}" alt="">
-                        <li class="nav-item"><a class="btn btn-danger" href="{% url 'crear_post' %}">Postear</a></li>
-                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">logout</a></li>
-                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'posteos' %}">posteos</a></li>
+                        <li class="nav-item"><a class="btn btn-success" href="{% url 'crear_post' %}">Postear</a></li>
+
+                        <li class="nav-item"><a class="btn btn-secondary" href="{% url 'logout' %}">Cerrar sesion</a></li>
+
+                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'posteos' %}">Ir a los Post</a></li>
                         
                         {% endif %}
                     </ul>
@@ -43,6 +45,7 @@
         
         {% endblock %}
         <!-- Page content-->
+        {% block inicio %}
         <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-8">
@@ -51,7 +54,7 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">Bienvenido al Blog</h1>
+                            <h1 class="fw-bolder mb-1">Bienvenido a TodoBlog</h1>
                             <!-- Post meta content-->
                             
                             <!-- Post categories-->
@@ -66,6 +69,9 @@
                             
                         </section>
                     </article>
+                    {% endblock %}
+
+                    {% block contenido_inicio %}
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
@@ -133,6 +139,7 @@
                 </div>
             </div>
         </div>
+        {% endblock %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>

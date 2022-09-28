@@ -26,7 +26,7 @@ def login_request(request):
          usuario=authenticate(username=usu,password=clave)
          if usuario is not None:
             login(request,usuario)
-            return render(request, 'AppLogin/login.html', {'mensaje':f"Bienvenido {usuario}"})
+            return render(request, 'AppLogin/home.html', {'mensaje':f"Bienvenido {usuario}"})
          else:
             return render(request, 'AppLogin/login.html', {"formulario":form, 'mensaje': 'Usuario o contraseña incorrectos'})
       else:
@@ -41,7 +41,7 @@ def register_request(request):
       if form.is_valid():
          username=form.cleaned_data["username"]
          form.save()
-         return render(request, 'AppLogin/registro.html', {'mensaje':f"Usuario {username} creado"})
+         return render(request, 'AppLogin/registro.html', {'mensaje':f"Usuario {username} creado, ya puede iniciar sesion"})
    else:
       form=UserRegisterForm()
    return render(request, 'AppLogin/registro.html', {"formulario":form})
