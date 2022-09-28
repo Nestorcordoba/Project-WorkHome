@@ -23,7 +23,6 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         {% block titulo_de_pagina %}  <h1 class="mb-5">Crear Entrada</h1>  {% endblock %}
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Sign In</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registro</a></li>
                         <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">logout</a></li>
                       
                     </ul>
@@ -35,11 +34,11 @@
         
       
         
-          <form action="{% url 'crear_post' %}" class="mt-3" autocomplete="off" method="post" enctype="multipart/form-data"> 
+          <form action="{% url 'posteos' %}" class="mt-3" autocomplete="off" method="POST" enctype="multipart/form-data"> 
             {% csrf_token %}
         
            
-            {% crispy form %}
+            {{ form|crispy }}
 
            
             <button type="submit" class="btn btn-success">Postear</button>
