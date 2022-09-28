@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'Blogs',
     'crispy_forms',
-    'bootstrap4'
+    'bootstrap4',
     
 ]
 

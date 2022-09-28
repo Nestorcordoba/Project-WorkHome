@@ -30,15 +30,16 @@
                         {% else %}
                         <p>hola! {{user.username}}</p>
                         <img src="{{ imagen }}" alt="">
+                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'crear_post' %}">Registrate</a></li>
+                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">logout</a></li>
                         
-                        <li class="nav-item"><a class="btn btn-secondary" href="{% url 'logout' %}">logout</a></li>
-                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'crear_post' %}">Crear Entrada</a></li>
                         {% endif %}
                     </ul>
                 </div>
             </div>
         </nav> 
         {% block contenido_que_cambia %}
+        
         {% endblock %}
         <!-- Page content-->
         <div class="container mt-5">
