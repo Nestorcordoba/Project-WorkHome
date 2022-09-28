@@ -1,0 +1,18 @@
+{% extends "AppLogin/home.html" %}
+
+{% block titulo_de_pagina %}
+
+
+    <h1 class="mb-5">VER POSTEOS</h1>
+
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+
+    {{ post.titulo }}
+    {{ post.subtitulo }}
+    {{ post.imagen }}
+    {{ post.autor.username }}
+    
+{% endblock %}

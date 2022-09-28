@@ -16,6 +16,6 @@ urlpatterns =[
     path('posteos/', posteos, name= 'posteos'),
     path('eliminar_post/<post_id>', eliminar_post, name="eliminar_post"),
     path('editarPost/<id>', editar_post, name='editarPost'),
-   
+    path('verPost/<int:id>', detalle_post, name='verPost'),
 
 ]

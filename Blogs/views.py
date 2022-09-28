@@ -55,13 +55,14 @@ def eliminar_post(request, post_id):
     post.delete()
     messages.error(request, f"el post {post.titulo} ha sido eliminado")
     return redirect("posteos")'''
+@login_required(login_url='/AppLogin/login/')
 def eliminar_post(request, post_id):
     post=Post.objects.get(id=post_id)
     post.delete()
     posts=Post.objects.all()
     return render(request, "Blogs/posteos.html", {"posts":posts})
 
-
+@login_required(login_url='/AppLogin/login/')
 def editar_post(request, id):
     #traer el post
     post=Post.objects.get(id=id)
@@ -83,3 +84,8 @@ def editar_post(request, id):
     else:
         form= FormularioPost(initial={"titulo": post.titulo, "subtitulo": post.subtitulo, "contenido": post.contenido})
         return render(request, "Blogs/editarPost.html", {"formulario":form, "titulo":post.titulo, "id":post.id})
+
+
+def detalle_post(request, id):
+    post= Post.objects.get(id = id)
+    return render(request, "Blogs/ver_post.html", {"post":post})
