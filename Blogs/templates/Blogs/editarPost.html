@@ -12,12 +12,12 @@
 
 <form action="{% url 'editarPost' id  %}" method="POST"> {% csrf_token %}
 
-
 <table>
-    
-    {{ formulario.as_table }}
-</table>
 
+
+    {{ formulario.as_table }}
+
+</table>
 
 <input type="submit", value="Guardar">
 

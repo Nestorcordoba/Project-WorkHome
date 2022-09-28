@@ -63,7 +63,7 @@ def eliminar_post(request, post_id):
 
 
 def editar_post(request, id):
-    #traer el profesor
+    #traer el post
     post=Post.objects.get(id=id)
     if request.method=="POST":
         #el form viene lleno, con los datos a cambiar
@@ -74,11 +74,12 @@ def editar_post(request, id):
             post.titulo=info["titulo"]
             post.subtitulo=info["subtitulo"]
             post.contenido=info["contenido"]
-            #guardo el profe 
+            #guardo el post
             post.save()
             #vuelvo a la vista del listado para ver el cambio
-            posteos=Post.objects.all()
-            return render(request, "Blogs/posteos.html",{"posteos":posteos})
+           #posteos=Post.objects.all()
+           # return render(request, "Blogs/posteos.html", {"posteos":posteos})
+            return redirect('posteos')
     else:
         form= FormularioPost(initial={"titulo": post.titulo, "subtitulo": post.subtitulo, "contenido": post.contenido})
         return render(request, "Blogs/editarPost.html", {"formulario":form, "titulo":post.titulo, "id":post.id})
