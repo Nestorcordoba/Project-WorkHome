@@ -28,6 +28,9 @@ posteos
                                 <a href="{% url 'eliminar_post' post.id %}" class="btn btn-danger">
                                     Eliminar post 
                                 </a>
+                                <a href="{% url 'editarPost' post.id %}" class="btn btn-danger">
+                                    Editar post 
+                                </a>
                             {% endif %}
                         </div>
                     </div>
@@ -39,7 +42,9 @@ posteos
             {% include "Blogs/paginacion.html" %}
 
         {% else %}
-            <div class="alert alert-danger"> aquí no hay nada</div>
+            <div > 
+                aqui no hay nada
+            </div>
         {% endif %}
     </div>
 {% endblock %}

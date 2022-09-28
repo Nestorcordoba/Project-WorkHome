@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from Blogs.models import *
 from django.core.paginator import Paginator
+from django.views.generic import UpdateView
 # Create your views here.
 
 @login_required(login_url='/AppLogin/login/')
@@ -39,7 +40,7 @@ def crear_post(request):
     return render(request, 'Blogs/crear_post.html', {'form':form})
 
 
-@login_required(login_url='/AppLogin/login/')
+'''@login_required(login_url='/AppLogin/login/')
 def eliminar_post(request, post_id):
     try:
         post = Post.objects.get(pk = post_id)
@@ -53,4 +54,31 @@ def eliminar_post(request, post_id):
 
     post.delete()
     messages.error(request, f"el post {post.titulo} ha sido eliminado")
-    return redirect("posteos")
+    return redirect("posteos")'''
+def eliminar_post(request, post_id):
+    post=Post.objects.get(id=post_id)
+    post.delete()
+    posts=Post.objects.all()
+    return render(request, "Blogs/posteos.html", {"posts":posts})
+
+
+def editar_post(request, id):
+    #traer el profesor
+    post=Post.objects.get(id=id)
+    if request.method=="POST":
+        #el form viene lleno, con los datos a cambiar
+        form=FormularioPost(request.POST)
+        if form.is_valid():
+            #cambio los datos
+            info=form.cleaned_data
+            post.titulo=info["titulo"]
+            post.subtitulo=info["subtitulo"]
+            post.contenido=info["contenido"]
+            #guardo el profe 
+            post.save()
+            #vuelvo a la vista del listado para ver el cambio
+            posteos=Post.objects.all()
+            return render(request, "Blogs/posteos.html",{"posteos":posteos})
+    else:
+        form= FormularioPost(initial={"titulo": post.titulo, "subtitulo": post.subtitulo, "contenido": post.contenido})
+        return render(request, "Blogs/editarPost.html", {"formulario":form, "titulo":post.titulo, "id":post.id})

@@ -1,0 +1,26 @@
+{% extends "AppLogin/home.html" %}
+
+
+
+{% block titulo_de_pagina %}
+<h1 class="mb-5">EDITANDO POSTEOS</h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+<h1>EDITANDO </h1>
+
+<form action="{% url 'editarPost' id  %}" method="POST"> {% csrf_token %}
+
+
+<table>
+    
+    {{ formulario.as_table }}
+</table>
+
+
+<input type="submit", value="Guardar">
+
+</form>
+
+{% endblock %}
