@@ -14,7 +14,7 @@ urlpatterns =[
     path('agregarAvatar/', agregarAvatar, name='agregarAvatar'),
     path('crear_post/', crear_post, name= 'crear_post'),
     path('posteos/', posteos, name= 'posteos'),
-    
+    path('eliminar_post/<int:post_id>', eliminar_post, name="eliminar_post")
 
 
 ]

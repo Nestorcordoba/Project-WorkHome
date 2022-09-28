@@ -23,6 +23,13 @@ posteos
                             <h5 class="card-title"> {{ post.titulo }}</h5>
                             <h6 class="card-subtitle"> Autor: {{ post.autor.username }}</h6>
                         </div>
+                        <div class="card-footer">
+                            {% if user == post.autor %}
+                                <a href="{% url 'eliminar_post' post.id %}" class="btn btn-danger">
+                                    Eliminar post 
+                                </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
                {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
