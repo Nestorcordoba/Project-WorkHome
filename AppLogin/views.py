@@ -87,4 +87,6 @@ def obtenerAvatar(request):
         imagen=""
     return imagen
 
+def about(request):
+    return render(request, 'AppLogin/about.html')
 
