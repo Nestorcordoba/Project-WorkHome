@@ -30,7 +30,7 @@ def crear_post(request):
            post.save()
            titulo= form.cleaned_data.get('titulo')
            messages.success(request, f'el post {titulo} se creo correctamente')
-           return redirect('home')
+           return redirect('posteos')
         else:
             for mensaje in form.error_messages:
                 messages.error(request, form.error_messages[mensaje])
